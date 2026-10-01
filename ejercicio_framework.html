@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    *{
+    margin: 0;
+    padding: 10px;
+    
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    }
+</style>
+
+<body>
+    
+    <center>
+        <h1>Hola Mundo</h1>
+
+        Ingresa tu nombre: <input type="text" id="nombre"><br><br>
+
+        <button id="btnSaludar">Saludar</button>
+        <!-- Añadido ID al botón Imprimir -->
+        <button id="btnImprimir">Imprimir</button>
+
+        <!-- Aquí aparecerá el saludo -->
+        <h2 id="resultado"></h2>
+    </center> 
+    
+    <script>
+        // Acción para el botón Saludar
+        document.getElementById('btnSaludar').addEventListener('click', function() {
+            const nombre = document.getElementById('nombre').value;
+            document.getElementById('resultado').innerText = "¡Hola " + nombre + "!";
+        });
+
+        // Acción para el botón Imprimir
+        document.getElementById('btnImprimir').addEventListener('click', function() {
+            // Abre el menú de impresión nativo del navegador
+            window.print();
+        });
+    </script>
+
+</body>
+</html>

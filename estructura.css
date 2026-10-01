@@ -1,0 +1,64 @@
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    background-color: #fc6868;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+.contenedor-principal {
+    width: 100%;
+    max-width: 900px; 
+    display: flex;
+    flex-direction: column;
+    gap: 60px; 
+}
+header, nav, section, article, aside, footer {
+    background-color: #e2e8f0; 
+    border: 2px solid #bb2312;   
+    border-radius: 6px;          
+    color: #48322d;               
+    text-align: center;
+    box-sizing: border-box;
+}
+header {
+    padding: 35px;
+    font-weight: bold;
+    font-size: 30px;
+}
+nav {
+    padding: 15px;
+    font-weight: 500;
+}
+footer {
+    padding: 25px;
+    font-weight: 500;
+}
+.contenido-medio {
+    display: flex;
+    gap: 15px;
+}
+section {
+    flex: 2; 
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px; 
+}
+article {
+    background-color: #76fd44; 
+    padding: 25px;
+}
+aside {
+    flex: 1; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+.etiqueta-padre {
+    font-size: 13px;
+    color: #2a9099;
+    font-style: italic;
+}
