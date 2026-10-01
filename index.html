@@ -1,71 +1,103 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario de Contacto</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario de Contacto</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="form-container">
-        <h2>Formulario de contacto</h2>
-        <form id="contactoForm" action="#" method="POST">
-            
-            <div class="form-group">
-                <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre" name="nombre" required placeholder="Ingresa tu nombre completo">
-            </div>
+  <div class="form-container">
+    <h2>Formulario de contacto</h2>
+    <form id="contactoForm" action="#" method="POST">
+      
+      <!-- Campo Nombre: Solo letras y espacios -->
+      <!-- Campo Nombre: Solo letras y espacios (máximo 50 caracteres) -->
+      <div class="form-group">
+        <label for="nombre">Nombre:</label>
+        <input 
+          type="text" 
+          id="nombre" 
+          name="nombre" 
+          required 
+          maxlength="50"
+          placeholder="Ingresa tu nombre completo"
+          pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]{1,50}" 
+          title="Solo se permiten letras y espacios (máximo 50 caracteres)">
+      </div>
 
-            <div class="form-group">
-                <label for="telefono">Tel:</label>
-                <input type="tel" id="telefono" name="telefono" required placeholder="Ingresa tu número de teléfono">
-            </div>
+      <!-- Campo Teléfono: Solo números y exactamente 10 dígitos -->
+      <div class="form-group">
+        <label for="telefono">Tel:</label>
+        <input 
+          type="tel" 
+          id="telefono" 
+          name="telefono" 
+          required 
+          placeholder="Ingresa tu número de teléfono (10 dígitos)"
+          pattern="[0-9]{10}" 
+          maxlength="10"
+          title="Ingresa un número de teléfono válido de 10 dígitos">
+      </div>
 
-            <div class="form-group">
-                <label for="correo">Correo:</label>
-                <input type="email" id="correo" name="correo" required placeholder="ejemplo@correo.com">
-            </div>
+      <!-- Campo Correo: Formato de email válido -->
+      <div class="form-group">
+        <label for="correo">Correo:</label>
+        <input 
+          type="email" 
+          id="correo" 
+          name="correo" 
+          required 
+          placeholder="ejemplo@correo.com">
+      </div>
 
-            <div class="form-group">
-                <label for="comentario">Comentario:</label>
-                <textarea id="comentario" name="comentario" rows="4" required placeholder="Escribe tu mensaje o comentario aquí..."></textarea>
-            </div>
+      <!-- Campo Comentario: Mínimo 10 caracteres -->
+      <div class="form-group">
+        <label for="comentario">Comentario:</label>
+        <textarea 
+          id="comentario" 
+          name="comentario" 
+          rows="4" 
+          required 
+          minlength="10"
+          placeholder="Escribe tu mensaje o comentario aquí..."></textarea>
+      </div>
 
-            <!-- SECCIÓN CAPTCHA (TEXTO DISTORSIONADO) -->
-            <div class="form-group">
-                <label for="captcha-input">Captcha:</label>
-                <div class="captcha-box">
-                    <div id="captcha-code" class="captcha-code"></div>
-                    <button type="button" id="btn-refresh" class="btn-refresh" title="Actualizar código">🔄</button>
-                </div>
-                <input type="text" id="captcha-input" placeholder="Ingresa el código mostrado" required autocomplete="off">
-            </div>
+      <!-- SECCIÓN CAPTCHA (Texto Distorsionado) -->
+      <div class="form-group captcha-group">
+        <label for="captchaInput">Verificación de seguridad (Captcha):</label>
+        <div class="captcha-box">
+          <canvas id="captchaCanvas" width="180" height="50"></canvas>
+          <button type="button" id="reloadCaptcha" title="Cambiar código">🔄</button>
+        </div>
+        <input 
+          type="text" 
+          id="captchaInput" 
+          name="captchaInput" 
+          required 
+          placeholder="Escribe el código mostrado arriba" 
+          autocomplete="off">
+        <span id="captchaError" class="error-msg"></span>
+      </div>
 
-            <!-- BOTONES -->
-            <div class="button-group">
-                <button type="submit" class="btn-submit">Enviar</button>
-                <button type="reset" class="btn-reset">Limpiar</button>
-            </div>
+      <button type="submit">Enviar</button>
+    </form>
 
-            <!-- MAPA -> UATV -->
-            <div class="form-group" style="margin-top: 20px;">
-                <label>Ubicación (UATV):</label>
-                <div class="map-container">
-                    <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4238.155102021087!2d-98.44893033037692!3d18.04406489237418!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85cf29f0b416a3cb%3A0x317bc639516bab8e!2sUnidad%20Academica%20Tulcingo%20de%20Valle!5e1!3m2!1ses-419!2smx!4v1790876450242!5m2!1ses-419!2smx" 
-                        width="100%" 
-                        height="220" 
-                        style="border:0;" 
-                        allowfullscreen="" 
-                        loading="lazy" 
-                        referrerpolicy="strict-origin-when-cross-origin">
-                    </iframe>
-                </div>
-            </div>
-
-        </form>
+    <!-- Sección del Mapa -->
+    <div class="map-container" style="margin-top: 25px;">
+      <h3>Nuestra Ubicación</h3>
+      <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3156.784889068988!2d-98.44583873820007!3d18.041688542156784!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85cf29f0b416a3cb%3A0x317bc639516bab8e!2sUnidad%20Academica%20Tulcingo%20de%20Valle!5e1!3m2!1ses-419!2smx!4v1790880833070!5m2!1ses-419!2smx"
+        width="100%" 
+        height="250" 
+        style="border:0; border-radius: 8px;" 
+        allowfullscreen="" 
+        loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
     </div>
+  </div>
 
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
